@@ -31,7 +31,8 @@ def create_app() -> Flask:
             body = (request.form.get("body") or "").strip()
             # TASK 01 will add validation here.
             tags = parse_tags(request.form.get("tags", ""))
-            app.notes.append({"title": title, "body": body, "tags": tags})
+            color = request.form.get("color", "#ffffff")
+            app.notes.append({"title": title, "body": body, "tags": tags, "color": color})
             return redirect(url_for("home"))
         return render_template("new_note.html")
 

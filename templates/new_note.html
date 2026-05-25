@@ -27,6 +27,17 @@
     <label for="tags">Tags</label>
     <input id="tags" name="tags" type="text">
 
+    <label for="color">Color</label>
+    <select id="color" name="color">
+      <option value="#ffffff">White</option>
+      <option value="#ffcdd2">Red</option>
+      <option value="#ffe0b2">Orange</option>
+      <option value="#fff9c4">Yellow</option>
+      <option value="#c8e6c9">Green</option>
+      <option value="#bbdefb">Blue</option>
+      <option value="#e1bee7">Purple</option>
+    </select>
+
     <div class="actions">
       <button type="submit">Save note</button>
       <a href="{{ url_for('home') }}">Cancel</a>
