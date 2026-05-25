@@ -8,6 +8,10 @@ from __future__ import annotations
 from flask import Flask, render_template, request, redirect, url_for
 
 
+def parse_tags(raw: str) -> list[str]:
+    return [t.strip().capitalize() for t in raw.split(",") if t.strip()]
+
+
 def create_app() -> Flask:
     app = Flask(__name__)
     app.config["SECRET_KEY"] = "sandbox-not-a-real-secret"
@@ -26,7 +30,7 @@ def create_app() -> Flask:
             title = (request.form.get("title") or "").strip()
             body = (request.form.get("body") or "").strip()
             # TASK 01 will add validation here.
-            tags = request.form.getlist("tags")
+            tags = parse_tags(request.form.get("tags", ""))
             app.notes.append({"title": title, "body": body, "tags": tags})
             return redirect(url_for("home"))
         return render_template("new_note.html")
